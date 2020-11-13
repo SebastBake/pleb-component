@@ -1,0 +1,31 @@
+{
+  "name": "@sebastbake/pleb-component",
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SebastBake/pleb-component.git"
+  },
+  "scripts": {
+    "build": "npx tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "Sebastian Baker",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.1.0-beta"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "tags": [
+    "typescript",
+    "hyperscript"
+  ],
+  "type": "module",
+  "dependencies": {
+    "@sebastbake/h": "^1.1.0",
+    "morphdom": "^2.6.1"
+  }
+}
