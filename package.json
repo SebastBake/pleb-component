@@ -1,7 +1,8 @@
 {
   "name": "@sebastbake/pleb-component",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "main": "index.js",
+  "description": "Web component library for plebians.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SebastBake/pleb-component.git"
@@ -25,7 +26,6 @@
   ],
   "type": "module",
   "dependencies": {
-    "@sebastbake/h": "^1.1.0",
     "morphdom": "^2.6.1"
   }
 }

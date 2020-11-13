@@ -1,4 +1,3 @@
-import h from "@sebastbake/h";
 import morph from "morphdom";
 
 type Constructor<E> = {
@@ -123,7 +122,9 @@ function registerWebComponent<ATTRS extends string[], E extends HTMLElement>(
       if (!this.shadowRoot || !conf.render) return;
       const rendered = await conf.render(this.makeRenderArgs());
       const fragment = document.createDocumentFragment();
-      fragment.appendChild(h("style", conf.style || ""));
+      const styleElement = document.createElement("style");
+      styleElement.textContent = conf.style || "";
+      fragment.appendChild(styleElement);
       appendChildren(fragment, rendered);
       if (!this.shadowRoot || !this.isConnected) return;
       morph(this.shadowRoot, fragment);
