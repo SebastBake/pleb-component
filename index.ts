@@ -12,8 +12,8 @@ type Attrs<ATTRS extends string[]> = {
 
 type RenderArgs<ATTRS extends string[]> = {
   attrs: Attrs<ATTRS>;
-  instanceSymbol: Symbol;
-  componentSymbol: Symbol;
+  readonly instanceSymbol: unique symbol;
+  readonly componentSymbol: unique symbol;
 };
 
 type AddEventListenerFn = <K extends keyof HTMLElementEventMap>(
@@ -81,8 +81,9 @@ function registerWebComponent<ATTRS extends string[], E extends HTMLElement>(
   conf: ElementConf<ATTRS, E>
 ) {
   class CustomElement extends (conf.element || HTMLElement) {
-    public static readonly componentSymbol = Symbol("[component]" + conf.name);
-    public readonly instanceSymbol = Symbol("[instance]" + conf.name);
+    public static readonly componentSymbol: unique symbol = Symbol("[component]" + conf.name);
+    // @ts-ignore
+    public readonly instanceSymbol: unique symbol = Symbol("[instance]" + conf.name);
     private cleanupfns = new Set<() => void>();
 
     constructor() {
@@ -134,7 +135,9 @@ function registerWebComponent<ATTRS extends string[], E extends HTMLElement>(
       const attrs = getAttrsFromEl(this);
       return {
         attrs,
+        // @ts-ignore
         componentSymbol: CustomElement.componentSymbol,
+        // @ts-ignore
         instanceSymbol: this.instanceSymbol,
       };
     }
